@@ -1,0 +1,4 @@
+id,type,name,balance
+1,CUSTOMER,Alice,1000.0
+2,AGENT,Bob,500.0
+3,CUSTOMER,Pete,50.0

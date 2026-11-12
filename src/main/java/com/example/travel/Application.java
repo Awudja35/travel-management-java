@@ -2,19 +2,22 @@ package com.example.travel;
 import com.example.travel.model.Agent;
 import com.example.travel.model.Customer;
 import com.example.travel.model.User;
+import com.example.travel.utils.CsvFileReader;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
-        List<User> users = new ArrayList<>();
-        users.add(new Customer(1,"Ken", 23.2));
-        users.add(new Agent(2,"Ken", 600.2));
+        List<String> lines = CsvFileReader.readLines(Path.of("src/main/resources/trips.csv"));
+        System.out.println("Lines read: " + lines.size());
 
-        for (User user:users){
-            System.out.println(user.getName() + "discount" + user.getDiscountRate());
+        String[] parts = CsvFileReader.splitLine(lines.get(1));
+        System.out.println("Values on line 2: " + parts.length);
+        System.out.println("From city: " + parts[6]);
+
         }
     }
 
-}
+
