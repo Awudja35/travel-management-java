@@ -128,4 +128,21 @@ assertEquals(0.10, users.get(1).getDiscountRate(), 0.001);
         assertThrows(IllegalArgumentException.class,
                 () -> new Agent(-5, "Bob", 100.0));
     }
+    @Test
+    void shouldKeepCorrectBalanceAfterSeveralOperations(){
+        alice.deposit(50.0);
+        alice.withdraw(100.0);
+
+//        100+50-100
+        assertEquals(50.0, alice.getBalance(), 0.001);
+    }
+    @Test
+    void shouldApplyTheSameBalanceRulesToAgents() {
+        Agent bob = new Agent(2, "Bob", 100.0);
+
+        bob.withdraw(100.0);
+
+        assertEquals(0.0, bob.getBalance(), 0.001);
+        assertThrows(PaymentFailed.class, () -> bob.withdraw(1.0));
+    }
 }
