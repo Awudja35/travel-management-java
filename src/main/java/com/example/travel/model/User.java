@@ -14,7 +14,7 @@ public abstract class User {
         if(name == null || name.isBlank()){
             throw new IllegalArgumentException("User name cannot be null or blank");
         }
-        if(balance <= 0){
+        if(balance < 0){
             throw new IllegalArgumentException("User balance cannot be zero or negative");
         }
 
@@ -30,12 +30,14 @@ public abstract class User {
       balance += amount;
     }
     public void withdraw(double amount){
-        if(amount > balance){
-            throw new PaymentFailed(
-                    name + "does not have enough balance:" + balance + ", needed " + amount
-            );
-        }
-        balance -= amount;
+       if(amount <= 0){
+           throw new IllegalArgumentException("Withdrawal amount must be positive");
+       }
+
+       if(balance < amount){
+           throw new PaymentFailed(name + "does not have enough balance: " + balance + ", needed " + amount);
+       }
+    balance -= amount;
     }
     public int getId() {return id;}
     public String getName() {return name;}
