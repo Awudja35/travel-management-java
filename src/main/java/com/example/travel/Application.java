@@ -1,22 +1,26 @@
 package com.example.travel;
-import com.example.travel.model.Agent;
-import com.example.travel.model.Customer;
-import com.example.travel.model.User;
-import com.example.travel.utils.CsvFileReader;
+import com.example.travel.model.Trip;
+
+
+import com.example.travel.utils.DataLoader;
+import com.example.travel.utils.TripCsvLoader;
+
 
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
-    public static void main(String[] args) {
-        List<String> lines = CsvFileReader.readLines(Path.of("src/main/resources/trips.csv"));
-        System.out.println("Lines read: " + lines.size());
+     static void main(String[] args) {
+         DataLoader<Trip> tripLoader = new TripCsvLoader();
+         List<Trip> trips = tripLoader.load(Path.of("src/main/resources/trips.csv"));
 
-        String[] parts = CsvFileReader.splitLine(lines.get(1));
-        System.out.println("Values on line 2: " + parts.length);
-        System.out.println("From city: " + parts[6]);
-
+         for (Trip trip : trips) {
+             System.out.println(trip.getModeOfTransport().getName() + ": "
+                     + trip.getDepartureLocation().getCity() + " -> "
+                     + trip.getArrivalLocation().getCity()
+                     + ", " + trip.getPrice() + " EUR, "
+                     + trip.travelDuration().toMinutes() + " min");
+        }
         }
     }
 
