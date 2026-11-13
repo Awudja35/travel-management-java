@@ -6,11 +6,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TripSearch {
+public class TripSearchService {
 
     private List<Trip> trips;
 
-    public TripSearch(List<Trip> trips) {
+    public TripSearchService(List<Trip> trips) {
         if (trips == null) {
             throw new IllegalArgumentException("Trip list is required");
         }
@@ -44,4 +44,5 @@ public class TripSearch {
 
         return results;
     }
+
 }

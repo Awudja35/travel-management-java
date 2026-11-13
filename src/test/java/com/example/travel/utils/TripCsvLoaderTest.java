@@ -1,9 +1,8 @@
-package com.example.travel.model.utils;
+package com.example.travel.utils;
 
 import com.example.travel.exception.DataLoad;
 import com.example.travel.model.SeatClass;
 import com.example.travel.model.Trip;
-import com.example.travel.utils.TripCsvLoader;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 

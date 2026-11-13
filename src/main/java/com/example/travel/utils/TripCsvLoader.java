@@ -57,4 +57,5 @@ public class TripCsvLoader implements DataLoader<Trip> {
         return new Trip(id, mode, provider, from, to, departure, arrival,
                 price, economySeats, businessSeats, firstSeats);
     }
+
 }

@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class TripSearchServiceTest {
 
-    private TripSearch service;
+    private TripSearchService service;
 
     // builds a valid trip in December 2026; only the id, the cities and the day change
     private Trip createTrip(int id, String fromCity, String toCity, int day) {
@@ -39,7 +39,7 @@ class TripSearchServiceTest {
         trips.add(createTrip(3, "Paris", "Lille", 1));
         trips.add(createTrip(4, "London", "Paris", 5));
 
-        service = new TripSearch(trips);
+        service = new TripSearchService(trips);
     }
 
     // ---------- Normal cases ----------
@@ -115,6 +115,6 @@ class TripSearchServiceTest {
     @Test
     void shouldThrowWhenTripListIsNull() {
         assertThrows(IllegalArgumentException.class,
-                () -> new TripSearch(null));
+                () -> new TripSearchService(null));
     }
 }
